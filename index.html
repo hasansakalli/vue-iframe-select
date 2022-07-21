@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic User Input</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/vue@3"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+
+    
+    <section id="VueFarbe">
+      <div class="container" :class="{'box1': farbe==1,'box2': farbe==2,'box3': farbe==3,'box4': farbe==4,'box5': farbe==5,}">
+        
+
+        <div class="selectgrup" >
+
+        <select class="form-select" aria-label="Default select example" v-model="farbe" >
+          <option value="" selected disabled="disabled">Wählen Farbe</option>
+          <option value="1">Red</option>
+          <option value="2">Blue</option>
+          <option value="3">Gray</option>
+          <option value="4">Green</option>
+          <option value="5">Orange</option>
+        
+        </select>
+        <select class="form-select" aria-label="Default select example" v-model="selectWeb" @change="start">
+          <option value="" selected disabled="disabled">Wählen Webseite</option>
+          <option value="0">Evb Training</option>
+          <option value="1">Bootstrap</option>
+          <option value="2">CSS Gradient</option>
+          <option value="3">WDR</option>
+          <option value="4">CSS Tricks</option>
+     
+               
+        </select>
+      </div>
+
+        <div class="iframe"> <iframe id="webAdress" src= "https://www.evbtraining.de"></iframe></div>
+      
+  
+      </div>
+        
+      </div>
+    </section>
+
+    <script>
+      const cssVue = Vue.createApp({
+        data() {
+          return {
+           mySites:[
+              "https://www.evbtraining.de",
+              "https://getbootstrap.com/",
+              "https://cssgradient.io/",
+             " https://www1.wdr.de/index.html",
+             " https://css-tricks.com/"
+             
+          ],
+            farbe:"",
+            selectWeb:"",
+            web:""
+           
+       
+          };
+        },
+        methods: {
+          start() {
+           this.web = this.mySites[this.selectWeb]
+           document.getElementById("webAdress").src= this.web;
+      
+                   }
+           
+            }
+
+      });
+
+      cssVue.mount("#VueFarbe");
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
